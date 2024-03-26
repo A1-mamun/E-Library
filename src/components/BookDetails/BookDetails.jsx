@@ -18,14 +18,19 @@ const BookDetails = () => {
     publisher,
     yearOfPublishing,
   } = book;
+
+  const handleRead = () => {
+    console.log("clicked");
+  };
+
+  const handleWishlist = () => {
+    console.log("clicked 2");
+  };
+
   return (
     <div className=" mt-7 container mx-auto flex flex-col md:flex-row gap-20 h-[640px]">
       <div className="bg-dark-05 rounded-2xl md:w-1/2 flex justify-center items-center">
-        <img
-          className="max-w-sm rounded-lg"
-          src="../../../public/Book1.png"
-          alt="Book"
-        />
+        <img className="max-w-sm rounded-lg" src={image} alt="Book" />
       </div>
       <div className="font-worksans md:w-1/2 flex flex-col">
         <h1 className=" text-4xl font-bold font-playfair text-dark">
@@ -62,10 +67,16 @@ const BookDetails = () => {
           </div>
         </div>
         <div className=" space-x-4">
-          <button className="btn bg-white border border-dark-3 text-lg text-dark font-semibold">
+          <button
+            onClick={handleRead}
+            className="btn bg-white border border-dark-3 text-lg text-dark font-semibold"
+          >
             Read
           </button>
-          <button className="btn bg-sky-blue-2 text-white text-lg font-semibold">
+          <button
+            onClick={handleWishlist}
+            className="btn bg-sky-blue-2 text-white text-lg font-semibold"
+          >
             Wishlist
           </button>
         </div>

@@ -1,7 +1,11 @@
+import ListedBook from "../ListedBook/ListedBook";
+import ListedBooks from "../ListedBooks/ListedBooks";
+
 const PagesRead = () => {
   return (
-    <div>
-      <h2 className="text-4xl">Pages To Read</h2>
+    <div className=" container mx-auto">
+      <ListedBooks></ListedBooks>
+      <ListedBook></ListedBook>
     </div>
   );
 };
