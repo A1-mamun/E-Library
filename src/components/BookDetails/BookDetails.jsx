@@ -1,12 +1,14 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import Tag from "../Tag/Tag";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { saveBooks } from "../../Utility/localStorage";
 
 const BookDetails = () => {
   const books = useLoaderData();
   const { id } = useParams();
   const book = books.find((book) => book.bookId === id);
   const {
-    bookId,
     bookName,
     author,
     image,
@@ -20,11 +22,13 @@ const BookDetails = () => {
   } = book;
 
   const handleRead = () => {
-    console.log("clicked");
+    saveBooks(id, "read-books");
+    toast("Reading complete");
   };
 
   const handleWishlist = () => {
-    console.log("clicked 2");
+    saveBooks(id, "wish-books");
+    toast("Add to wishlist");
   };
 
   return (
@@ -73,6 +77,7 @@ const BookDetails = () => {
           >
             Read
           </button>
+
           <button
             onClick={handleWishlist}
             className="btn bg-sky-blue-2 text-white text-lg font-semibold"
@@ -80,6 +85,7 @@ const BookDetails = () => {
             Wishlist
           </button>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );
