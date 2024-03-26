@@ -16,7 +16,7 @@ export default {
         'dark-05': '#1313130D',
         'sky-blue': '#59C6D2',
         'sky-blue-2': '#50B1C9',
-        'green': '##23BE0A',
+        'green': '#23BE0A',
         'blue': '#328EFF',
         'blue-15': '#328EFF26',
         'supernova': '#FFAC33',
