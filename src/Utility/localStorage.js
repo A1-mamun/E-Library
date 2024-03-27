@@ -6,13 +6,16 @@ const getStoredBooks = (listType) => {
     return [];
 }
 
-const saveBooks = (id, listType) => {
+const isExist = (id, listType) => {
     const storedBooks = getStoredBooks(listType);
-    const isExist = storedBooks.find(bookId => bookId === id);
-    if (!isExist) {
-        storedBooks.push(id);
-        localStorage.setItem(listType, JSON.stringify(storedBooks))
-    }
+    return storedBooks.find(bookId => bookId === id);
 }
 
-export { saveBooks, getStoredBooks }
+const saveBooks = (id, listType) => {
+    const storedBooks = getStoredBooks(listType);
+    storedBooks.push(id);
+    localStorage.setItem(listType, JSON.stringify(storedBooks))
+
+}
+
+export { saveBooks, getStoredBooks, isExist }

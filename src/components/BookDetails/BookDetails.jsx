@@ -2,7 +2,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import Tag from "../Tag/Tag";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { saveBooks } from "../../Utility/localStorage";
+import { isExist, saveBooks } from "../../Utility/localStorage";
 
 const BookDetails = () => {
   const books = useLoaderData();
@@ -21,20 +21,86 @@ const BookDetails = () => {
     yearOfPublishing,
   } = book;
 
+  const notifySuccessRead = () => {
+    toast.success("Book Added to Read List!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const notifySuccessWish = () => {
+    toast.success("Book Added to Wish List!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const notifyWarnRead = () => {
+    toast.warn("You have Already Read this Book", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const notifyWarnWish = () => {
+    toast.warn("You have Already Wished this Book", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const handleRead = () => {
-    saveBooks(id, "read-books");
-    toast("Reading complete");
+    const exist = isExist(id, "read-books");
+    if (!exist) {
+      saveBooks(id, "read-books");
+      notifySuccessRead();
+    } else {
+      notifyWarnRead();
+    }
   };
 
   const handleWishlist = () => {
-    saveBooks(id, "wish-books");
-    toast("Add to wishlist");
+    const existInRead = isExist(id, "read-books");
+    const existInWish = isExist(id, "wish-books");
+
+    if (existInRead) {
+      notifyWarnRead();
+    } else if (existInWish) {
+      notifyWarnWish();
+    } else {
+      saveBooks(id, "wish-books");
+      notifySuccessWish();
+    }
   };
 
   return (
     <div className=" mt-7 container mx-auto flex flex-col md:flex-row gap-20 h-[640px]">
-      <div className="bg-dark-05 rounded-2xl md:w-1/2 flex justify-center items-center">
-        <img className="max-w-sm rounded-lg" src={image} alt="Book" />
+      <div className="bg-dark-05 rounded-2xl md:w-1/2 flex justify-center items-center p-10">
+        <img className="h-full" src={image} alt="Book" />
       </div>
       <div className="font-worksans md:w-1/2 flex flex-col">
         <h1 className=" text-4xl font-bold font-playfair text-dark">
