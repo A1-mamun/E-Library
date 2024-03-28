@@ -67,13 +67,13 @@ const ListedBooks = () => {
   };
 
   return (
-    <div className=" container mx-auto mt-8">
-      <div className="bg-dark-05 text-center p-8 rounded-2xl mb-8">
-        <h2 className="text-4xl font-bold">Books</h2>
+    <div className=" container mx-auto mt-8 px-3 md:px-5 lg:px-0">
+      <div className="bg-dark-05 text-center p-5 md:p-6 lg:p-8 rounded-2xl mb-8">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Books</h2>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mb-5 md:mb-10 lg:mb-16">
         <select
-          className="btn w-40 bg-green focus:outline-none hover:bg-white text-white hover:text-black"
+          className="btn btn-sm md:btn-md w-36 md:w-40 bg-green focus:outline-none hover:bg-white text-white hover:text-black"
           onChange={handleSelectChange}
           value={selectedOption}
         >

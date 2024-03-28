@@ -12,9 +12,6 @@ const Header = () => {
       <li>
         <NavLink to="/read">Pages to Read</NavLink>
       </li>
-      <li>
-        <NavLink to="/40">404</NavLink>
-      </li>
     </>
   );
 
@@ -50,7 +47,7 @@ const Header = () => {
           </ul>
         </div>
         <a className="btn btn-ghost text-2xl md:text-4xl ml-[-10px]">
-          Book Vibe
+          E-Library
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
