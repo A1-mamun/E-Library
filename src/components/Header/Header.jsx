@@ -16,7 +16,7 @@ const Header = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 container mx-auto mt-8">
+    <div className="navbar bg-base-100 container mx-auto mt-8 font-worksans">
       <div className="navbar-start">
         <div className="dropdown">
           <div

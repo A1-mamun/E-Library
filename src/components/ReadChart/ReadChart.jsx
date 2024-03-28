@@ -45,7 +45,10 @@ const ReadChart = () => {
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
   return (
-    <div className="text-center" style={{ width: "100%", height: 600 }}>
+    <div
+      className="text-center font-worksans"
+      style={{ width: "100%", height: 600 }}
+    >
       <h2
         className={`${
           readBooks.length ? "hidden" : "block"
