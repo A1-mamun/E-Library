@@ -12,6 +12,9 @@ const Header = () => {
       <li>
         <NavLink to="/read">Pages to Read</NavLink>
       </li>
+      <li>
+        <NavLink to="/40">404</NavLink>
+      </li>
     </>
   );
 

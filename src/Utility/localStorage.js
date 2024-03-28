@@ -17,5 +17,11 @@ const saveBooks = (id, listType) => {
     localStorage.setItem(listType, JSON.stringify(storedBooks))
 
 }
+const removeBooks = (id, listType) => {
+    const storedBooks = getStoredBooks(listType);
+    const remainBooks = storedBooks.filter(bookid => bookid !== id);
+    localStorage.setItem(listType, JSON.stringify(remainBooks))
 
-export { saveBooks, getStoredBooks, isExist }
+}
+
+export { saveBooks, getStoredBooks, isExist, removeBooks }

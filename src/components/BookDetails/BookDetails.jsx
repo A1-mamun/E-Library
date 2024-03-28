@@ -2,7 +2,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import Tag from "../Tag/Tag";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { isExist, saveBooks } from "../../Utility/localStorage";
+import { isExist, saveBooks, removeBooks } from "../../Utility/localStorage";
 
 const BookDetails = () => {
   const books = useLoaderData();
@@ -21,65 +21,15 @@ const BookDetails = () => {
     yearOfPublishing,
   } = book;
 
-  const notifySuccessRead = () => {
-    toast.success("Book Added to Read List!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const notifySuccessWish = () => {
-    toast.success("Book Added to Wish List!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const notifyWarnRead = () => {
-    toast.warn("You have Already Read this Book", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const notifyWarnWish = () => {
-    toast.warn("You have Already Wished this Book", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
   const handleRead = () => {
-    const exist = isExist(id, "read-books");
-    if (!exist) {
+    const existInRead = isExist(id, "read-books");
+    // const existInWish = isExist(id, "wish-books");
+    if (!existInRead) {
+      removeBooks(id, "wish-books");
       saveBooks(id, "read-books");
-      notifySuccessRead();
+      toast.success("Book Added to Read List!");
     } else {
-      notifyWarnRead();
+      toast.warn("You have Already Read this Book!");
     }
   };
 
@@ -88,12 +38,12 @@ const BookDetails = () => {
     const existInWish = isExist(id, "wish-books");
 
     if (existInRead) {
-      notifyWarnRead();
+      toast.warn("You have Already Read this Book!");
     } else if (existInWish) {
-      notifyWarnWish();
+      toast.warn("You have Already Wished this Book");
     } else {
       saveBooks(id, "wish-books");
-      notifySuccessWish();
+      toast.success("Book Added to Wish List!");
     }
   };
 

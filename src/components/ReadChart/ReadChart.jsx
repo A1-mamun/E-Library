@@ -36,37 +36,46 @@ const ReadChart = () => {
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
   return (
-    <BarChart
-      width={1300}
-      height={800}
-      data={readBooks}
-      margin={{
-        top: 20,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="bookName"
-        angle={-45}
-        textAnchor="end"
-        interval={0}
-        height={200}
-      />
-      <YAxis />
-      <Bar
-        dataKey="totalPages"
-        fill="#8884d8"
-        shape={<TriangleBar />}
-        label={{ position: "top" }}
+    <div className="text-center">
+      <h2
+        className={`${
+          readBooks.length ? "hidden" : "block"
+        } text-2xl md:text-3xl lg:text-4xl font-medium`}
       >
-        {readBooks.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-        ))}
-      </Bar>
-    </BarChart>
+        Sorry!!! you have to read books
+      </h2>
+      <BarChart
+        width={1300}
+        height={800}
+        data={readBooks}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          dataKey="bookName"
+          angle={-45}
+          textAnchor="end"
+          interval={0}
+          height={200}
+        />
+        <YAxis />
+        <Bar
+          dataKey="totalPages"
+          fill="#8884d8"
+          shape={<TriangleBar />}
+          label={{ position: "top" }}
+        >
+          {readBooks.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+          ))}
+        </Bar>
+      </BarChart>
+    </div>
   );
 };
 
