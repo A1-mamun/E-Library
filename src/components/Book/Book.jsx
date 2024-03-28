@@ -10,7 +10,7 @@ const Book = ({ book }) => {
           <img className="p-8 h-72" src={image} alt="Book" />
         </figure>
         <div className="border-b-2 border-dashed pb-5 mt-5">
-          <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row gap-2">
             {tags.map((tag, idx) => (
               <Tag key={idx} tag={tag}></Tag>
             ))}
